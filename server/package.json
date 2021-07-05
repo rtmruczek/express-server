@@ -27,8 +27,18 @@
     "express-session": "^1.17.2",
     "express-winston": "^4.1.0",
     "helmet": "^4.6.0",
-    "jsonwebtoken": "^8.5.1",
-    "qs": "^6.10.1"
+    "jsonwebtoken": "^8.5.1"
+  },
+  "jest": {
+    "rootDir": ".",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    }
   },
   "author": "",
   "license": "ISC"

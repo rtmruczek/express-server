@@ -16,6 +16,8 @@ export const register: RequestHandler<any, any, RegisterRequestSignature> =
     const user = await db.getUniqueUserByEmail(req.body.email);
     if (!!user) {
       logger.log('warn', 'attempted to register with same email');
+    } else {
+      db.createUser(req.body.email, req.body.password);
     }
 
     res.set('Content-Type', 'application/json');

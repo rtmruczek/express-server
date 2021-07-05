@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "rootDirs": ["./"],
+    "lib": ["esnext"],
     "sourceMap": true,
     "outDir": "dist",
     "esModuleInterop": true,
     "noImplicitAny": true,
     "strict": true,
     "jsx": "react-jsx"
-  }
+  },
+  "include": ["src"]
 }

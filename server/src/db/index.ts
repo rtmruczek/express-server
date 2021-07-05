@@ -1,9 +1,10 @@
-import { Prisma, User } from '.prisma/client';
+import { User } from '.prisma/client';
 import * as prisma from './prisma';
 import * as InMemory from './InMemory';
 
 export type DatabaseType = 'Prisma' | 'InMemory';
 
+const db = getDatabaseUsing(process.env.db as DatabaseType);
 export interface Database {
   connect: () => any;
   getUniqueUserByEmail: (email: string) => Promise<User | null>;
@@ -35,3 +36,5 @@ export function getDatabaseUsing(databaseType: DatabaseType): Database {
     }
   }
 }
+
+export default db;

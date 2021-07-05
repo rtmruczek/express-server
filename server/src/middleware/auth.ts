@@ -2,19 +2,17 @@ import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import { readFileSync } from 'fs';
 import path from 'path';
+import { logger } from './logger';
 
 const jwtSecret = readFileSync(path.join('.keys', 'jwtprivate.pem')).toString();
-
-const publicUrls = ['/login', '/register'];
 
 export default function authMiddleware(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  if (publicUrls.includes(req.url)) {
-    return next();
-  }
+  logger.info(req.url);
+
   const jwtString = req.headers['_jwt'] as string;
   jwt.verify(jwtString, jwtSecret);
   next();

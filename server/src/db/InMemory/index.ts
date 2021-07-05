@@ -1,10 +1,6 @@
 import { Prisma, User } from '.prisma/client';
 import { v4 as uuidv4 } from 'uuid';
 
-interface Writeable {
-  write: <T>(value: T) => {};
-}
-
 interface Session {}
 interface Database {
   User: Record<string, User>;

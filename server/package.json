@@ -5,11 +5,12 @@
   "main": "index.js",
   "devDependencies": {
     "@types/express": "^4.17.12",
-    "@types/supertest": "^2.0.11",
-    "@types/uuid": "^8.3.1",
     "@types/jsonwebtoken": "^8.5.3",
     "@types/mock-fs": "^4.13.0",
-    "@types/node": "^15.12.5"
+    "@types/node": "^15.12.5",
+    "@types/supertest": "^2.0.11",
+    "@types/uuid": "^8.3.1",
+    "tsconfig-paths-jest": "^0.0.1"
   },
   "scripts": {
     "dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/index.js\"",
@@ -19,15 +20,15 @@
     "schema": "db/prisma/schema.prisma"
   },
   "dependencies": {
-    "ts-node": "^10.0.0",
-    "uuid": "^8.3.2",
     "@prisma/client": "^2.26.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "express-winston": "^4.1.0",
     "helmet": "^4.6.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "ts-node": "^10.0.0",
+    "uuid": "^8.3.2"
   },
   "jest": {
     "rootDir": ".",
@@ -38,6 +39,12 @@
     ],
     "transform": {
       ".(ts|tsx)": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "@db/(.*)": "<rootDir>/src/db/$1",
+      "@middleware/(.*)": "<rootDir>/src/middleware/$1",
+      "@utils/(.*)": "<rootDir>/src/utils/$1",
+      "@routes/(.*)": "<rootDir>/src/routes/$1"
     }
   },
   "author": "",

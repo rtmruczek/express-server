@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import { readFileSync } from 'fs';
 import path from 'path';
-import { logger } from './logger';
+import { logger } from '@middleware/logger';
 
 const jwtSecret = readFileSync(path.join('.keys', 'jwtprivate.pem')).toString();
 

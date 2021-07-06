@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { buildServer } from '../src/buildServer';
-import { logger } from '../src/middleware/logger';
-import db from '../src/db';
+import { logger } from '@middleware/logger';
+import db from '@db/index';
 
 const app = buildServer();
 const logMock = jest.spyOn(logger, 'log');

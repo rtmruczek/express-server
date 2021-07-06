@@ -1,6 +1,7 @@
 import { RequestHandler } from 'express';
-import db from '../db';
-import { logger } from '../middleware/logger';
+import db from '@db/index';
+import { logger } from '@middleware/logger';
+import { hashPassword } from '@utils/crypt';
 
 interface RegisterRequestSignature {
   email: string;
@@ -17,7 +18,8 @@ export const register: RequestHandler<any, any, RegisterRequestSignature> =
     if (!!user) {
       logger.log('warn', 'attempted to register with same email');
     } else {
-      db.createUser(req.body.email, req.body.password);
+      const hashedPassword = await hashPassword(req.body.password);
+      db.createUser(req.body.email, hashedPassword!);
     }
 
     res.set('Content-Type', 'application/json');

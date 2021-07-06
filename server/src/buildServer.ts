@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
 import helmet from 'helmet';
-import authMiddleware from './middleware/auth';
-import { errorLoggerMiddleware, logger } from './middleware/logger';
-import { register } from './routes/register';
-import { login } from './routes/login';
+// import authMiddleware from './middleware/auth';
+import { errorLoggerMiddleware, logger } from '@middleware/logger';
+import { register } from '@routes/register';
+import { login } from '@routes/login';
 
 const authedRouter = express.Router();
 const publicRouter = express.Router();

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { readFileSync } from 'fs';
 import path from 'path';
 
-import { Database } from '../db';
+import { Database } from '@db/index';
 
 const jwtSecret = readFileSync(path.join('.keys', 'jwtprivate.pem')).toString();
 

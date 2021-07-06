@@ -3,7 +3,7 @@ import db from '@db/index';
 import { logger } from '@middleware/logger';
 import { hashPassword } from '@utils/crypt';
 
-interface RegisterRequestSignature {
+export interface RegisterRequestSignature {
   email: string;
   password: string;
 }

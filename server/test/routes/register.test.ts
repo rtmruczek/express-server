@@ -1,10 +1,17 @@
 import request from 'supertest';
-import { buildServer } from '../src/buildServer';
+import { buildServer } from '../../src/buildServer';
 import { logger } from '@middleware/logger';
 import db from '@db/index';
+import { hashPassword } from '@utils/crypt';
+import { RegisterRequestSignature } from '@routes/register';
 
 const app = buildServer();
 const logMock = jest.spyOn(logger, 'log');
+
+const registerInput: RegisterRequestSignature = {
+  email: 'newuser@test.com',
+  password: 'test',
+};
 
 describe('POST /register', () => {
   beforeAll(async () => {
@@ -14,12 +21,17 @@ describe('POST /register', () => {
     await request(app)
       .post('/api/register')
       .set('Content-Type', 'application/json')
-      .send({ email: 'newuser@test.com', password: 'test' })
+      .send(registerInput)
       .expect(200);
   });
   it('should have created user', async () => {
     const user = await db.getUniqueUserByEmail('newuser@test.com');
+    const hashedPassword = await hashPassword('test');
     expect(user).toBeDefined();
+    expect(user?.id).toHaveLength(36);
+    expect(user?.password).toBeTruthy();
+    expect(user?.password).not.toEqual(registerInput.password);
+    expect(user?.password).toEqual(hashedPassword);
   });
   it('should get 200 for valid request and log if user exists', async () => {
     await request(app)

@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express, { Application } from 'express';
 import helmet from 'helmet';
 // import authMiddleware from './middleware/auth';
@@ -27,11 +28,6 @@ function setMiddleware(app: Application) {
 }
 
 function buildRoutes(app: Application) {
-  publicRouter.get('/favicon.ico', (req, res) =>
-    res.sendFile('favicon.ico', {
-      root: 'public',
-    })
-  );
   publicRouter.post('/api/register', register);
   publicRouter.post('/api/login', login);
 }

@@ -1,16 +1,22 @@
-import { RequestHandler } from 'express';
+import { Request, RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
 import { readFileSync } from 'fs';
 import path from 'path';
 
-import { Database } from '@db/index';
+import db from '@db/index';
 
 const jwtSecret = readFileSync(path.join('.keys', 'jwtprivate.pem')).toString();
 
-export const login: RequestHandler = async (req, res) => {
-  const { email, password } = req.body;
+export interface LoginRequestSignature {
+  email: string;
+  password: string;
+}
 
-  const db = req.app.get('database') as Database;
+export const login: RequestHandler = async (
+  req: Request<any, any, LoginRequestSignature>,
+  res
+) => {
+  const { email, password } = req.body;
   const user = await db.getUniqueUserByEmail(email);
 
   if (!user || user.password !== password) {

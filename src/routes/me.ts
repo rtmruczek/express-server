@@ -1,5 +1,5 @@
-import * as express from 'express';
-import fetch from 'node-fetch';
+import express from 'express';
+import fetch from 'cross-fetch';
 import Context from '@middleware/context';
 
 const userMe = 'https://discord.com/api/users/@me';
@@ -24,4 +24,5 @@ const me = async (
   const me = await meResponse.json();
   return res.send(me);
 };
+
 export default me;

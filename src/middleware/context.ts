@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import type { Request } from 'express';
 
 export default class Context {
   static _bindings = new WeakMap<Request, Context>();

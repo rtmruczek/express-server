@@ -1,0 +1,21 @@
+{
+  "name": "eldenring-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.3",
+    "express-session": "1.17.2",
+    "node-fetch": "3.2.3",
+    "ts-node": "10.7.0"
+  },
+  "devDependencies": {
+    "typescript": "4.6.2"
+  }
+}
